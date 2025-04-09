@@ -2,8 +2,8 @@ package model
 
 import "time"
 
-type User struct {
-	UserID    int       `gorm:"primaryKey" json:"user_id"`
+type Customer struct {
+	CustomerID   int   `gorm:"primaryKey" json:"customer_id"`
 	Name      string    `gorm:"size:255;not null" json:"name"`
 	Email     string    `gorm:"size:255;not null" json:"email"`
 	Password  string    `gorm:"size:255;not null" json:"password"`

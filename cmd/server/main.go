@@ -9,14 +9,14 @@ import (
 )
 
 func main() {
-	database := db.NewMySqlConnection()
+	database := db.NewPostgresConnection()
 
-	userRepo := repository.NewUserRepository(database)
-	userService := service.NewUserService(userRepo)
-	userHandler := handler.NewUserHandler(userService)
+	customerRepo := repository.NewCustomerRepository(database)
+	customerService := service.NewCustomerService(customerRepo)
+	customerHandler := handler.NewCustomerHandler(customerService)
 
 	r := gin.Default()
-	r.GET("/users", userHandler.FindAll)
+	r.GET("/users", customerHandler.FindAll)
 
 	r.Run(":8080")
 }

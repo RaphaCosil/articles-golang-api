@@ -7,15 +7,15 @@ import (
 	"github.com/raphacosil/go-study/internal/service"
 )
 
-type UserHandler struct {
-	service service.UserService
+type CustomerHandler struct {
+	service service.CustomerService
 }
 
-func NewUserHandler(s service.UserService) *UserHandler {
-	return &UserHandler{s}
+func NewCustomerHandler(s service.CustomerService) *CustomerHandler {
+	return &CustomerHandler{s}
 }
 
-func (h *UserHandler) FindAll(c *gin.Context) {
+func (h *CustomerHandler) FindAll(c *gin.Context) {
 	users, err := h.service.FindAll()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H {"error": "Error getting all users"})
