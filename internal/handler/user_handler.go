@@ -15,8 +15,8 @@ func NewUserHandler(s service.UserService) *UserHandler {
 	return &UserHandler{s}
 }
 
-func (h *UserHandler) GetAllUsers(c *gin.Context) {
-	users, err := h.service.GetAllUsers()
+func (h *UserHandler) FindAll(c *gin.Context) {
+	users, err := h.service.FindAll()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H {"error": "Error getting all users"})
 		return

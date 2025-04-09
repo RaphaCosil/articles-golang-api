@@ -6,7 +6,7 @@ import(
 )
 
 type UserService interface {
-	GetUsers() ([]model.User, error)
+	FindAll() ([]model.User, error)
 }
 
 type userService struct {
@@ -17,6 +17,6 @@ func NewUserService(r repository.UserRepository) UserService {
 	return &userService{r}
 }
 
-func (s *userService) GetUsers() ([]model.User, error) {
+func (s *userService) FindAll() ([]model.User, error) {
 	return s.repo.FindAll()
 }

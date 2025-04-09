@@ -1,6 +1,10 @@
 package db
 
 import(
+	"fmt"
+	"log"
+	"os"
+
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -24,12 +28,12 @@ func NewMySqlConnection() *gorm.DB {
 		pass, 
 		host, 
 		port, 
-		name
+		name,
 	)
 	db, err := gorm.Open(
 		mysql.Open(dsn), 
-		&gorm.Config{}
-	)
+		&gorm.Config{},
+	)	
 	if err != nil {
 		panic("Error connecting database")
 	}

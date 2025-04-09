@@ -16,7 +16,7 @@ func main() {
 	userHandler := handler.NewUserHandler(userService)
 
 	r := gin.Default()
-	r.GET("/users", userHandler.GetAllUsers)
+	r.GET("/users", userHandler.FindAll)
 
 	r.Run(":8080")
 }

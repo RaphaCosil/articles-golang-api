@@ -6,7 +6,7 @@ import (
 )
 
 type UserRepository interface {
-	findAll() ([]model.User, error)
+	FindAll() ([]model.User, error)
 }
 
 type userRepository struct {
@@ -17,8 +17,8 @@ func NewUserRepository(db *gorm.DB) UserRepository {
 	return &userRepository{db}
 }
 
-func (r *userRepository) findAll() ([]model.User, error) {
-	var user []model
+func (r *userRepository) FindAll() ([]model.User, error) {
+	var users []model.User
 	result := r.db.Find(&users)
 	return users, result.Error
 }
