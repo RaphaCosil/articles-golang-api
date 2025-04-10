@@ -24,3 +24,4 @@ func (h *ArticleHandler) FindAll(c *gin.Context) {
 	c.JSON(http.StatusOK, articles)
 }
 
+

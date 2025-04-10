@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/raphacosil/go-study/internal/db"
 	"github.com/raphacosil/go-study/internal/handler"
 	"github.com/raphacosil/go-study/internal/repository"
 	"github.com/raphacosil/go-study/internal/service"
+	"github.com/raphacosil/go-study/internal/router"
 )
 
 func main() {
@@ -23,10 +23,11 @@ func main() {
 	keywordService := service.NewKeywordService(keywordRepo)
 	keywordHandler := handler.NewKeywordHandler(keywordService)
 
-	r := gin.Default()
-	r.GET("/customers", customerHandler.FindAll)
-	r.GET("/articles", articleHandler.FindAll)
-	r.GET("/keywords", keywordHandler.FindAll)
+	r := router.SetupRouter(
+		customerHandler,
+		articleHandler,
+		keywordHandler,
+	)
 
 	r.Run(":8080")
 }
