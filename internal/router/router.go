@@ -15,28 +15,34 @@ func SetupRouter(
 	customerGroup := r.Group("/customer")
 	{
 		customerGroup.GET("", customerHandler.FindAll)
-		customerGroup.GET("/:id", customerHandler)
-		customerGroup.POST("", customerHandler.CreateUser)
-		customerGroup.PUT("/:id", customerHandler.UpdateUser)
-		customerGroup.DELETE("/:id", customerHandler.DeleteUser)
+		customerGroup.GET("/:id", customerHandler.FindById)
+		customerGroup.POST("", customerHandler.Create)
+		customerGroup.PUT("/:id", customerHandler.Update)
+		customerGroup.DELETE("/:id", customerHandler.DeleteById)
 	}
 
 	articleGroup := r.Group("/article")
 	{
 		articleGroup.GET("", articleHandler.FindAll)
-		articleGroup.GET("/:id", articleHandler)
-		articleGroup.POST("", articleHandler.CreateUser)
-		articleGroup.PUT("/:id", articleHandler.UpdateUser)
-		articleGroup.DELETE("/:id", articleHandler.DeleteUser)
+		articleGroup.GET("/:id", articleHandler.FindById)
+		articleGroup.POST("", articleHandler.Create)
+		articleGroup.PUT("/:id", articleHandler.Update)
+		articleGroup.DELETE("/:id", articleHandler.DeleteById)
+		articleGroup.GET("/customer/:customerId", articleHandler.FindByCustomerId)
+		articleGroup.GET("/title/:title", articleHandler.FindByTitle)
+		articleGroup.GET("/content/:content", articleHandler.FindByContent)
+		articleGroup.GET("/keywords/:keywords", articleHandler.FindByKeywords)
+		articleGroup.GET("/keywords/filter/:keywords", articleHandler.FindByKeywordsFilter)
 	}
 
-	keywordGroup := r.Group("/article")
+	keywordGroup := r.Group("/keyword")
 	{
 		keywordGroup.GET("", keywordHandler.FindAll)
-		keywordGroup.GET("/:id", keywordHandler)
-		keywordGroup.POST("", keywordHandler.CreateUser)
-		keywordGroup.PUT("/:id", keywordHandler.UpdateUser)
-		keywordGroup.DELETE("/:id", keywordHandler.DeleteUser)
+		keywordGroup.GET("/:id", keywordHandler.FindById)
+		keywordGroup.POST("", keywordHandler.Create)
+		keywordGroup.PUT("/:id", keywordHandler.Update)
+		keywordGroup.DELETE("/:id", keywordHandler.DeleteById)
+		keywordGroup.GET("/article/:articleId", keywordHandler.FindByArticleId)
 	}
 
 	return r
