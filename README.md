@@ -6,7 +6,6 @@ A RESTful API built in Go using **Gin** and **GORM**, responsible for managing:
 - Articles (`Article`)
 - Keywords (`Keyword`)
 
----
 
 ## Project Structure
 
@@ -22,8 +21,6 @@ A RESTful API built in Go using **Gin** and **GORM**, responsible for managing:
 │   └── service/              # Business logic
 ```
 
----
-
 ## API Routes
 
 ### **`/customer`**
@@ -35,8 +32,6 @@ A RESTful API built in Go using **Gin** and **GORM**, responsible for managing:
 | POST   | `/customer` | Create a new user |
 | PUT    | `/customer/:id` | Update a user |
 | DELETE | `/customer/:id` | Delete a user |
-
----
 
 ### **`/article`**
 
@@ -53,8 +48,6 @@ A RESTful API built in Go using **Gin** and **GORM**, responsible for managing:
 | GET    | `/article/keywords?kw=kw1&kw=kw2` | Search articles containing *any* keyword |
 | GET    | `/article/keywords/filter?kw=...` | Search articles containing *all* keywords |
 
----
-
 ### **`/keyword`**
 
 | Method | Route | Description |
@@ -65,8 +58,6 @@ A RESTful API built in Go using **Gin** and **GORM**, responsible for managing:
 | PUT    | `/keyword/:id` | Update a keyword |
 | DELETE | `/keyword/:id` | Delete a keyword |
 | GET    | `/keyword/article/:articleId` | List keywords for an article |
-
----
 
 ## Setup
 
