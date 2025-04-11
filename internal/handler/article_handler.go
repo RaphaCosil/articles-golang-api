@@ -107,6 +107,10 @@ func (h *ArticleHandler) FindByCustomerId(c *gin.Context) {
 
 func (h *ArticleHandler) FindByTitle(c *gin.Context) {
 	title := c.Query("title")
+	if title == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Title query parameter is required"})
+		return
+	}
 	articles, err := h.service.FindByTitle(title)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting articles by title"})
@@ -117,6 +121,10 @@ func (h *ArticleHandler) FindByTitle(c *gin.Context) {
 
 func (h *ArticleHandler) FindByContent(c *gin.Context) {
 	content := c.Query("content")
+	if content == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Content query parameter is required"})
+		return
+	}
 	articles, err := h.service.FindByContent(content)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting articles by content"})
@@ -127,6 +135,10 @@ func (h *ArticleHandler) FindByContent(c *gin.Context) {
 
 func (h *ArticleHandler) FindByKeywords(c *gin.Context) {
 	keywords := c.QueryArray("keywords")
+	if len(keywords) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Keywords query parameter is required"})
+		return
+	}
 	articles, err := h.service.FindByKeywords(keywords)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting articles by keywords"})
@@ -137,6 +149,10 @@ func (h *ArticleHandler) FindByKeywords(c *gin.Context) {
 
 func (h *ArticleHandler) FindByKeywordsFilter(c *gin.Context) {
 	keywords := c.QueryArray("keywords")
+	if len(keywords) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Keywords query parameter is required"})
+		return
+	}
 	articles, err := h.service.FindByKeywordsFilter(keywords)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting articles by keywords filter"})

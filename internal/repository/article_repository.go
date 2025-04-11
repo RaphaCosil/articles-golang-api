@@ -76,15 +76,14 @@ func (r *articleRepository) FindByKeywords(keywords []string) ([]model.Article, 
 	var articles []model.Article
 
 	sub := r.db.
-		Table("key_words").
-		Select("article_id").
-		Where("content IN ?", keywords).
-		Group("article_id").
-		Having("COUNT(DISTINCT content) = ?", len(keywords))
+	Table("article").
+	Select("article.article_id").
+	Joins("JOIN key_word ON key_word.article_id = article.article_id").
+	Where("key_word.content IN ?", keywords)
 
 	err := r.db.
-		Where("id IN (?)", sub).
-		Find(&articles).Error
+	Where("article_id IN (?)", sub).
+	Find(&articles).Error
 
 	if err != nil {
 		return nil, err
@@ -98,7 +97,7 @@ func (r *articleRepository) FindByKeywordsFilter(keywords []string) ([]model.Art
 	var articleIDs []uint
 
 	err := r.db.
-		Table("key_words").
+		Table("key_word").
 		Select("article_id").
 		Where("content IN ?", keywords).
 		Group("article_id").
@@ -114,6 +113,6 @@ func (r *articleRepository) FindByKeywordsFilter(keywords []string) ([]model.Art
 		return []model.Article{}, nil
 	}
 
-	err = r.db.Where("id IN ?", articleIDs).Find(&articles).Error
+	err = r.db.Where("article_id IN ?", articleIDs).Find(&articles).Error
 	return articles, err
 }

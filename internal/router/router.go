@@ -29,10 +29,10 @@ func SetupRouter(
 		articleGroup.PUT("/:id", articleHandler.Update)
 		articleGroup.DELETE("/:id", articleHandler.DeleteById)
 		articleGroup.GET("/customer/:customerId", articleHandler.FindByCustomerId)
-		articleGroup.GET("/title/:title", articleHandler.FindByTitle)
-		articleGroup.GET("/content/:content", articleHandler.FindByContent)
-		articleGroup.GET("/keywords/:keywords", articleHandler.FindByKeywords)
-		articleGroup.GET("/keywords/filter/:keywords", articleHandler.FindByKeywordsFilter)
+		articleGroup.GET("/title", articleHandler.FindByTitle)
+		articleGroup.GET("/content", articleHandler.FindByContent)
+		articleGroup.GET("/keywords", articleHandler.FindByKeywords)
+		articleGroup.GET("/keywords/filter", articleHandler.FindByKeywordsFilter)
 	}
 
 	keywordGroup := r.Group("/keyword")
